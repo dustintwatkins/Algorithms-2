@@ -83,15 +83,17 @@ class Proj1GUI( QWidget ):
             if result == 'prime':
                 prob = fermat.probability(k)
                 self.output.setText( '<i>Result:</i> {:d} <b>is prime</b> with probability {:5.5f}.'.format(n,prob) )
-           # elif result == 'carmichael':
-            #    self.output.setText('<i>Result:</i> {:d} is a <b>Carmichael number</b>.'.format(n))
+            elif result == 'carmichael':
+                self.output.setText('<i>Result:</i> {:d} is a <b>Carmichael number</b>.'.format(n))
             else: # Should be 'composite'
                 self.output.setText('<i>Result:</i> {:d} is <b>not prime</b>.'.format(n))
 
         # If inputs not valid, display an error
         except Exception as e:
-    		print(str(e))
-		self.output.setText('<i>ERROR:</i> inputs must be integers!')
+            self.output.setText('<i>ERROR:</i> inputs must be integers!')
+            print(str(e))
+
+
 
 
 if __name__ == '__main__':
