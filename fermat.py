@@ -7,24 +7,22 @@ def carmichael_test(N):
 	while b<N: #will happen x = N-b-1 times: O(xn)
 		#check if b is relatively prime to N 
 		if(gcd(b,N) == 1 and mod_exp(b, N-1, N)): #euclids algorithm is 0(log(N))
-			print("returning false")
-			return false;
+			return 0;
 		b = b+1 #O(n)
 	
-	print("returning true")
-	return true;
+	return 1;
 
 def prime_test(N, k):
 
-	rand_numbers = [k]#space: n*k bit values 
-	for x in range(0,k):#happens k times O(kn)
-		rand_numbers.append(random.randint(2, N-1))#randint() is O(n)
+	rand_numbers = random.sample(range(2, N-2), k)
+
+#	for x in rand_numbers:This was used to verify the numbers were not repeated
+#		print(x)	
 
 	for x in range(2, k+2):
 		if mod_exp(x, N-1, N) != 1:
 			return 'composite'
 	
-	print("hello")
 #	for x in rand_numbers:
 #		if(mod_exp(x, N-1, N) != 1):
 #			return 'composite'
@@ -54,13 +52,10 @@ def probability(k):
 #Complexity = O(log(a+b)) for  Euclids algorithm
 def gcd(a,b):
 	if(a < b):
-		print("1")
 		return gcd(b,a)
 	if(a % b == 0):
-		print("2")
 		return b
 
-	print("3")
 	return gcd(b, a % b)
 
 
