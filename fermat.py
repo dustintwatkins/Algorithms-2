@@ -2,7 +2,8 @@ import random
 
 #Assuming each has n-bits
 
-#O(tn) + O(log(N)) + O(n)
+#complexity: O(tn) + O(nlog(N)) + O(n)
+#space: O(n^2)
 def carmichael_test(N): 
 	b = 2 #space: O(n) bits 
 	while b < N: # will happen t = N-b-1 times: O(tn)
@@ -10,7 +11,7 @@ def carmichael_test(N):
 		
 		#gcd(euclids) complexity: O(log(n*b + n* N))
 		#	      space: O(2n) = O(n)	
-		#mod_exp: complexity: 
+		#mod_exp: complexity: O(N*n*log(N*n))
 		#	  space: O(3n) = O(n) but the recursive call itself is O(n^2)
 		if(gcd(b,N) == 1 and mod_exp(b, N-1, N)): 
 			return 0;
@@ -32,7 +33,7 @@ def prime_test(N, k):
 		if(mod_exp(x, N-1, N) != 1):	#complexity: O(nlog(N*n))
 			return 'composite'	#space: O(n) but recursive call is O(n^2)
 
-	if(carmichael_test(N)): 		#complexity: O(xn) + O(log(N)) + O(n)
+	if(carmichael_test(N)): 		#complexity: O(tn) + O(nlog(N)) + O(n)
 		return 'composite'
 	return 'prime'		
 
